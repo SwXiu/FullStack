@@ -10,6 +10,6 @@ import com.cesur.demo.models.dto.IncidenciaDto;
 public interface IncidenciaServices {
     IncidenciaDto getIncidenciaById(Long id);
     List<IncidenciaDto> getIncidenceByUserName(String username);
-    boolean storeIncidencia(IncidenciaDto datos);
+    void storeIncidencia(IncidenciaDto datos);
     void deleteIncidencia(Long id);
 }

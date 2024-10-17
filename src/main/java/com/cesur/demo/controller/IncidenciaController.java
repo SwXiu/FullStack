@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cesur.demo.models.dto.IncidenciaDto;
 import com.cesur.demo.services.IncidenciaServices;
 
+import jakarta.websocket.server.PathParam;
+
 @RestController
 @RequestMapping("/api")
 public class IncidenciaController {
@@ -19,9 +21,14 @@ public class IncidenciaController {
     IncidenciaServices incidenciaServices;
 
     @PostMapping("/incidencia")
-    public ResponseEntity<Integer> postMethodName(@RequestBody IncidenciaDto entidy) {
+    public ResponseEntity<Integer> postMethodName(@RequestBody IncidenciaDto entity) {
+        return new ResponseEntity<Integer>(1, HttpStatus.ACCEPTED);
+    }
+
+    @PostMapping("/incidencia/:id")
+    public ResponseEntity<Integer> addIncidenciaDetail(@PathParam(value="id") IncidenciaDto entity) {
         try {
-            incidenciaServices.storeIncidencia(entidy);
+            incidenciaServices.storeIncidencia(entity);
             return new ResponseEntity<Integer>(1, HttpStatus.ACCEPTED);
         } catch (Exception e) {
             // TODO: handle exception

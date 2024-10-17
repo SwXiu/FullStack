@@ -29,21 +29,16 @@ public class IncidenciaServicesImpl implements IncidenciaServices {
     }
 
     @Override
-    public boolean storeIncidencia(IncidenciaDto datos) {
+    public void storeIncidencia(IncidenciaDto datos) {
         // TODO Auto-generated method stub
         Incidencia incidencia = new Incidencia();
-        incidencia.setCategory(datos.getCategory());
         incidencia.setDescription(datos.getDescription());
-        incidencia.setPriority(datos.getPriority());
+        //incidencia.setPriority(datos.getPriority());
         incidencia.setCreateAlt(LocalDateTime.now());
+        incidencia.setPriority(datos.getPriority());
+        incidencia.setScope(datos.getscope());
         incidencia.setUserCreated(null);
-
-        Incidencia response = incidenciaRepository.save(incidencia);
-        if(response == null) {
-            return true;
-        } else {
-            return false;
-        }
+        incidenciaRepository.save(incidencia);
     }
 
     @Override
