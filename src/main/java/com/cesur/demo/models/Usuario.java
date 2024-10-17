@@ -2,28 +2,39 @@ package com.cesur.demo.models;
 
 import java.time.LocalDateTime;
 
+import com.cesur.demo.models.utils.Roles;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "Usuario")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class Usuario {
     // ctrl+shift+alt+Fabajo/Farriba
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "username", length = 8)
-    private String username;
-    @Column(name = "password", length = 16)
+    @Column(name = "email", length = 50)
+    private String email;
+    @Column(name = "password", length = 32)
     private String password;
     @Column(name = "name", length = 50)
     private String name;
-    @Column(name = "birthday")
-    private String birthDate;
+    @Column(name = "active")
+    private String active;
     @Column(name = "lastUpdate")
     private LocalDateTime lastUpdate;
     @Column(name = "deletedAlt")
@@ -31,14 +42,18 @@ public class Usuario {
     @Column(name = "createAlt")
     private LocalDateTime createAlt;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "rol", nullable = false)
+    private Roles rol;
+
     // private String document;
     // private EmptyRoleSemantic role;
-    public Usuario(Long id, String username, String password, String name, String birthDate, LocalDateTime lastUpdate, LocalDateTime deletedAlt, LocalDateTime createAlt) {
+    public Usuario(Long id, String email, String password, String name, String active, LocalDateTime lastUpdate, LocalDateTime deletedAlt, LocalDateTime createAlt) {
         this.id = id;
-        this.username = username;
+        this.email = email;
         this.password = password;
         this.name = name;
-        this.birthDate = birthDate;
+        this.active = active;
         this.lastUpdate = lastUpdate;
         this.deletedAlt = deletedAlt;
         this.createAlt = createAlt;
@@ -52,12 +67,12 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -76,12 +91,12 @@ public class Usuario {
         this.name = name;
     }
 
-    public String getBirthDate() {
-        return birthDate;
+    public String getActive() {
+        return active;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+    public void setActive(String active) {
+        this.active = active;
     }
 
     public LocalDateTime getLastUpdate() {

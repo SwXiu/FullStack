@@ -2,28 +2,31 @@ package com.cesur.demo.models.dto;
 
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 
+import com.cesur.demo.models.utils.Priorities;
+import com.cesur.demo.models.utils.Scopes;
+
 public class IncidenciaDto {
     private Long id;
-    private String category;
     private String description;
-    private String priority;
+    private Priorities priority;
+    private Scopes scope;
     private User userCreated;
     
-    public IncidenciaDto(Long id,String category, String description, String priority, User userCreated) {
+    public IncidenciaDto(Long id,Scopes scope, String description, Priorities priority, User userCreated) {
         this.id = id;
-        this.category = category;
+        this.scope = scope;
         this.description = description;
         this.priority = priority;
         this.userCreated = userCreated;
     }
     
 
-    public String getCategory() {
-        return category;
+    public Scopes getscope() {
+        return scope;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setscope(Scopes scope) {
+        this.scope = scope;
     }
 
     public String getDescription() {
@@ -34,11 +37,11 @@ public class IncidenciaDto {
         this.description = description;
     }
 
-    public String getPriority() {
+    public Priorities getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(Priorities priority) {
         this.priority = priority;
     }
 
